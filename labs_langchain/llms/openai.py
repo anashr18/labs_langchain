@@ -1,3 +1,5 @@
+"""OpenAI wrapper."""
+
 import os
 from typing import Any, Dict, List, Mapping, Optional
 
@@ -8,6 +10,8 @@ from labs_langchain.llms.base import LLM
 
 
 class OpenAI(BaseModel, LLM):
+    """OpenAI language model using GPT-4 for text generation."""
+
     client: Any
     model_name: str = "gpt-4"
     temperature: float = 0.7
@@ -22,6 +26,7 @@ class OpenAI(BaseModel, LLM):
     @model_validator(mode="before")
     @classmethod
     def validate_environment(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+        """Validate environ for openai key."""
         api_key = os.getenv("OPENAI_API_KEY")
         if api_key is None:
             raise ValueError("Missing OPENAI_API_KEY")
@@ -30,6 +35,7 @@ class OpenAI(BaseModel, LLM):
 
     @property
     def default_params(self) -> Mapping[str, Any]:
+        """Setting up a default parameter dict."""
         return {
             "temperature": self.temperature,
             "max_tokens": self.max_tokens,
@@ -40,6 +46,7 @@ class OpenAI(BaseModel, LLM):
         }
 
     def __call__(self, prompt: str, stop: Optional[List[str]] = None) -> str:
+        """Call out the OpenAI chat completion API."""
         response = self.client.chat.completions.create(
             model=self.model_name,
             messages=[{"role": "user", "content": prompt}],

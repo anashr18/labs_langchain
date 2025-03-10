@@ -1,12 +1,12 @@
-"""Base interface for LLM"""
+"""Base interface for LLM."""
 
 from abc import ABC, abstractmethod
 from typing import List, Optional
 
 
 class LLM(ABC):
-    """LLM wrapper should take in a prompt"""
+    """LLM wrapper should take in a prompt."""
 
     @abstractmethod
     def __call__(self, prompt: str, stop: Optional[List[str]]) -> str:
-        """Run the LLM on given prompt"""
+        """Run the LLM on given prompt."""

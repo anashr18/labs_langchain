@@ -1,3 +1,5 @@
+"""Wrapper for prompt."""
+
 from typing import Any, Dict, List
 
 from pydantic import BaseModel, model_validator
@@ -8,6 +10,8 @@ _FORMATTER_MAPPING = {"f-string": formatter.format}
 
 
 class Prompt(BaseModel):
+    """class representing a prompt object with input variables and a template."""
+
     input_variables: List[str]
     template: str
     template_format: str = "f-string"
@@ -15,11 +19,13 @@ class Prompt(BaseModel):
     model_config = {"extra": "forbid"}
 
     def format(self, **kwargs: Any) -> str:
+        """Return a formatted string."""
         return _FORMATTER_MAPPING[self.template_format](self.template, **kwargs)
 
     @model_validator(mode="before")
     @classmethod
     def validate_template(cls, values: Dict[str, Any]) -> Dict[str, Any]:
+        """Validate the template and input variables."""
         input_variables = values["input_variables"]
         template = values["template"]
         # template_format = values["template_format"]

@@ -1,3 +1,5 @@
+"""Pytest configuration file."""
+
 # import sys
 # import os
 
