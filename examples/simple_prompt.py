@@ -1,13 +1,10 @@
 # Get the absolute path of the parent directory
-import sys
-import os
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from dotenv import load_dotenv
 
 load_dotenv()  # Load environment variables from .env file
-from langchain.prompt import Prompt
-from langchain.chains.llm import LLMChain
-from langchain.llms.openai import OpenAI
+from labs_langchain import LLMChain
+from labs_langchain.llms.openai import OpenAI
+from labs_langchain.prompt import Prompt
 
 question_template = """question: {question}
 answer: Lets think step by step

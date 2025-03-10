@@ -1,0 +1,35 @@
+{
+    "id": "chatcmpl-B9XTpO33Wb0bzkxD1eR6ysOpVM3zV",
+    "object": "chat.completion",
+    "created": 1741613349,
+    "model": "gpt-4-0613",
+    "service_tier": "default",
+    "system_fingerprint": null,
+    "choices": [
+      {
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "Justin Bieber was born on March 1, 1994. The Super Bowl that year (Super Bowl XXVIII) was held on January 30, 1994. The Dallas Cowboys won that Super Bowl."
+        },
+        "finish_reason": "stop",
+        "logprobs": null
+      }
+    ],
+    "usage": {
+      "prompt_tokens": 33,
+      "completion_tokens": 45,
+      "total_tokens": 78,
+      "prompt_tokens_details": {
+        "audio_tokens": 0,
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "accepted_prediction_tokens": 0,
+        "audio_tokens": 0,
+        "reasoning_tokens": 0,
+        "rejected_prediction_tokens": 0
+      }
+    }
+  }
+  
