@@ -13,7 +13,7 @@ class OpenAI(BaseModel, LLM):
     """OpenAI language model using GPT-4 for text generation."""
 
     client: Any
-    model_name: str = "gpt-4"
+    model_name: str = "gpt-4o"
     temperature: float = 0.7
     max_tokens: int = 256
     top_p: int = 1
