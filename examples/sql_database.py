@@ -1,4 +1,4 @@
-from labs_langchain import SqlDatabaseChain, SqlDatabase, OpenAI
+from labs_langchain import OpenAI, SqlDatabase, SqlDatabaseChain
 
 db = SqlDatabase.from_uri("sqlite:///../notebooks/Chinook.db")
 llm = OpenAI(temperature=0)
