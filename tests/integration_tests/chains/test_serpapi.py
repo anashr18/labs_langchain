@@ -1,4 +1,5 @@
 """Integration test for SerpAPI."""
+
 from langchain.chains.serpapi import SerpAPIChain
 
 

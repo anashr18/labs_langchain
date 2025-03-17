@@ -1,7 +1,6 @@
 """Test HuggingFace API wrapper."""
 
 import pytest
-
 from langchain.llms.huggingface_hub import HuggingFaceHub
 
 

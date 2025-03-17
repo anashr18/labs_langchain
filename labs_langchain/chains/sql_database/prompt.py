@@ -1,4 +1,5 @@
 """Default prompt for Sql."""
+
 from labs_langchain.prompt import Prompt
 
 _DEFAULT_TEMPLATE = """Given an input question, first create a syntactically correct {dialect} query to run, then look at the results of the query and return the answer. 
@@ -15,4 +16,6 @@ Only use the following tables:
 
 Question: {input}"""
 
-PROMPT = Prompt(input_variables=["dialect", "table_info", "input"], template=_DEFAULT_TEMPLATE)
+PROMPT = Prompt(
+    input_variables=["dialect", "table_info", "input"], template=_DEFAULT_TEMPLATE
+)

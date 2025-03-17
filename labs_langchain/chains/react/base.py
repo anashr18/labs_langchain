@@ -1,12 +1,14 @@
-
 import re
-from labs_langchain.chains.llm import LLMChain
-from labs_langchain.chains.base import Chain
-from labs_langchain.llms.base import LLM
-from labs_langchain.docstore.base import Docstore
 from typing import Any, Dict, List, Tuple
+
 from pydantic import BaseModel
+
+from labs_langchain.chains.base import Chain
+from labs_langchain.chains.llm import LLMChain
 from labs_langchain.chains.react.prompt import PROMPT
+from labs_langchain.docstore.base import Docstore
+from labs_langchain.llms.base import LLM
+
 
 def predict_until_observation(
     llm_chain: LLMChain, prompt: str, i: int
@@ -29,6 +31,7 @@ def predict_until_observation(
         raise ValueError(f"Could not parse action directive: {action_str}")
     return ret_text, re_matches.group(1), re_matches.group(2)
 
+
 class ReActChain(Chain, BaseModel):
     """Chain that implements the ReAct paper.
 
@@ -47,11 +50,7 @@ class ReActChain(Chain, BaseModel):
     output_key: str = "answer"  #: :meta private:
 
     """Configuration for this pydantic object."""
-    model_config = {
-        "extra": "forbid",
-        "arbitrary_types_allowed": "True"
-    }
-
+    model_config = {"extra": "forbid", "arbitrary_types_allowed": True}
 
     @property
     def input_keys(self) -> List[str]:
@@ -67,7 +66,7 @@ class ReActChain(Chain, BaseModel):
 
         :meta private:
         """
-        return ["full_logic", self.output_key] 
+        return ["full_logic", self.output_key]
 
     def _run(self, inputs: Dict[str, Any]) -> Dict[str, str]:
         question = inputs[self.input_key]
@@ -100,7 +99,6 @@ class ReActChain(Chain, BaseModel):
             prompt += f"\nObservation {i}: " + observation + f"\nThought {i + 1}:"
             i += 1
 
-
     def run(self, question: str) -> str:
         """Run ReAct framework.
 
@@ -117,5 +115,3 @@ class ReActChain(Chain, BaseModel):
                 answer = react.run(question)
         """
         return self({self.input_key: question})[self.output_key]
-
-
